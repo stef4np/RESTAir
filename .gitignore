@@ -1,0 +1,8 @@
+RESTAir/target/
+!RESTAir/.mvn/wrapper/maven-wrapper.jar
+!RESTAir/**/src/main/**/target/
+!RESTAir/**/src/test/**/target/
+
+RESTAir/.classpath
+RESTAir/.project
+RESTAir/.settings
