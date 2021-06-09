@@ -1,4 +1,4 @@
-package com.project.RESTAir;
+package com.project.restair;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
