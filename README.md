@@ -117,7 +117,7 @@ Content-Type: application/json
 
 POST http://localhost:8080/api/gates/[gateNumber]/times
 
-With Empty Request Body
+With Empty Request Body - Nothing in the body of the request not even empty JSON {}
 ```
 List of errors that can occur when you use this method:
 1. 403 - Forbidden - Access Denied, Insufficient Rights!
@@ -199,7 +199,7 @@ Content-Type: application/json
 POST http://localhost:8080/api/gates/[gateNumber]/assign
 
 Request Body Example:
-With Empty Request Body
+With Empty Request Body - Nothing in the body of the request not even empty JSON {}
 ```
 List of errors that can occur when you use this method:
 1. 404 - Not Found - Gate [gateNumber] was not found!
