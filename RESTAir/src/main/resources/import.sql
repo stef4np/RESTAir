@@ -6,9 +6,15 @@ insert into gate (version, number, flight_id, availablefrom, availableto) values
 insert into gate (version, number, flight_id, availablefrom, availableto) values (0, 'A200', null, null, null);
 insert into gate (version, number, flight_id, availablefrom, availableto) values (0, 'B100', null, null, null);
 insert into gate (version, number, flight_id, availablefrom, availableto) values (0, 'B200', null, null, null);
+insert into gate (version, number, flight_id, availablefrom, availableto) values (0, 'C100', null, null, null);
+insert into gate (version, number, flight_id, availablefrom, availableto) values (0, 'C200', null, null, null);
 
 
 insert into flight (version, number) values (0, 'AB-1234');
 insert into flight (version, number) values (0, 'BC-5678');
 insert into flight (version, number) values (0, 'DE-9012');
 insert into flight (version, number) values (0, 'FG-3456');
+insert into flight (version, number) values (0, 'AA-1221');
+insert into flight (version, number) values (0, 'BB-5656');
+insert into flight (version, number) values (0, 'DD-9010');
+insert into flight (version, number) values (0, 'FF-5687');

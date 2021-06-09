@@ -1,9 +1,8 @@
 package com.project.RESTAir.services.impl;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.RESTAir.entities.User;
 import com.project.RESTAir.repositories.UserRepository;

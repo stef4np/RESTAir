@@ -8,6 +8,8 @@ public interface GateService {
 	
 	public List<GateDTO> getAllGates();
 	
+	public GateDTO assignGate(final String flightNum);
+	
 	public GateDTO assignGate(final String gateNum, final String flightNum);
 	
 	public GateDTO unassignGate(final String gateNum);

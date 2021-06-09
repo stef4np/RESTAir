@@ -30,6 +30,11 @@ public class GateController {
 		return gateService.getAllGates();
 	}
 	
+	@PostMapping("/assign")
+	public GateDTO assignGate(@RequestBody FlightDTO flightDTO) {
+		return gateService.assignGate(flightDTO.getFlightNumber());
+	}
+	
 	@PostMapping("/{gatenum}/assign")
 	public GateDTO assignGate(@PathVariable String gatenum, @RequestBody(required = false) FlightDTO flightDTO) {
 		if (flightDTO != null) {

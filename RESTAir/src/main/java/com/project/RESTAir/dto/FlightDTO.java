@@ -1,5 +1,7 @@
 package com.project.RESTAir.dto;
 
+import com.project.RESTAir.entities.Flight;
+
 public class FlightDTO {
 	
 	private String flightNumber;
@@ -8,6 +10,10 @@ public class FlightDTO {
 	
 	public FlightDTO(String flightNumber) {
 		this.flightNumber = flightNumber;
+	}
+	
+	public FlightDTO(Flight flight) {
+		this.flightNumber = flight.getNumber();
 	}
 
 	public String getFlightNumber() {

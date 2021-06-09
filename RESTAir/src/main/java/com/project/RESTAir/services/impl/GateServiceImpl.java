@@ -5,10 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.RESTAir.dto.GateDTO;
 import com.project.RESTAir.entities.Flight;
@@ -33,12 +32,45 @@ public class GateServiceImpl implements GateService {
 
 	@Override
 	public List<GateDTO> getAllGates() {
+		/*
+		 This code could be used instead of the one that is used now
+		 but it would be harder to debug
+		 
+		 return ((List<Gate>) gateRepository.findAll())
+				.stream().map(GateDTO::new).collect(Collectors.toList());
+		 */
 		ArrayList<GateDTO> retVal = new ArrayList<>();
 		Iterable<Gate> gates = gateRepository.findAll();
 		for (Gate g : gates) {
 			retVal.add(new GateDTO(g));
 		}
 		return retVal;
+	}
+	
+	@Override
+	public GateDTO assignGate(final String flightNum) {
+		Flight flight = flightRepository.findByNumber(flightNum);
+		if (flight == null) {
+			throw new CustomNotFoundException(String.format("Flight %s was not found!", flightNum));
+		}
+		
+		if (flight.getGate() != null) {
+			//Maybe this could cause a confusion and we should throw an exception here?
+			return new GateDTO(flight.getGate());
+		}
+		
+		Integer currTimeValue = TimesCalcUtil.calcTimeFromString(
+				LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
+		Gate gate = gateRepository.findFirstAvailableGate(currTimeValue);
+		
+		if (gate == null) {
+			throw new CustomAlreadyAssignedException("All gates are currently unavailable!");
+		}
+		
+		gate.setFlight(flight);
+		gateRepository.save(gate);
+		
+		return new GateDTO(gate);
 	}
 
 	@Override
@@ -100,6 +132,7 @@ public class GateServiceImpl implements GateService {
 		if (gate == null) {
 			throw new CustomNotFoundException(String.format("Gate %s was not found!", gateNum));
 		}
+		//Not the greatest string to time conversion but it will do for now
 		Integer avFrom = TimesCalcUtil.calcTimeFromString(availableFrom);
 		Integer avTo = TimesCalcUtil.calcTimeFromString(availableTo);
 		
